@@ -3,6 +3,7 @@ import FlashCard from "./FlashCard"
 import "./flash-style.css"
 
 const FlashDeals = ({ productItems, addToCart }) => {
+  console.log('--------flash deals', productItems)
   return (
     <>
       <section className='flash'>

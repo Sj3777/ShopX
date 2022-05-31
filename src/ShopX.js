@@ -1,27 +1,32 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Header from "./common/header/Header"
 import Pages from "./pages/Pages"
 import Data from "./components/Data"
-import Cart from "./common/Cart/Cart"
+import Cart from "../src/common/Cart/Cart"
 import Footer from "./common/footer/Footer"
 import Sdata from "./components/shops/Sdata"
-
+import { API } from './config'
+import axios from 'axios'
 export default function () {
-     /*
-  step1 :  const { productItems } = Data 
-  lai pass garne using props
-  
-  Step 2 : item lai cart ma halne using useState
-  ==> CartItem lai pass garre using props from  <Cart CartItem={CartItem} /> ani import garrxa in cartItem ma
- 
-  Step 3 :  chai flashCard ma xa button ma
 
-  Step 4 :  addToCart lai chai pass garne using props in pages and cart components
-  */
+  const [productItems, setProduct] = useState([])
+  useEffect(() => {
+    getProduct();
+  }, [])
+
+  const getProduct = () => {
+    let url = `${API.localhost}/product/get-product`;
+    axios.get(url).then((res) => {
+      console.log("api res----", res.data.Data)
+      setProduct(res.data.Data)
+    }).catch((err) => {
+      console.log("-----errr", err)
+    })
+  }
 
   //Step 1 :
-  const { productItems } = Data
+  // const { productItems } = Data
   const { shopItems } = Sdata
 
   //Step 2 :
@@ -65,19 +70,26 @@ export default function () {
       setCartItem(CartItem.map((item) => (item.id === product.id ? { ...productExit, qty: productExit.qty - 1 } : item)))
     }
   }
-    return (
-        <>
-            <Header CartItem={CartItem} />
-            <Routes>
-            <Route path='/' exact element={<Pages productItems={productItems}
-                addToCart={addToCart}
-                shopItems={shopItems} />}>
-            </Route>
-            {/* <Route path='/cart' exact element={<Cart CartItem={CartItem} addToCart={addToCart} decreaseQty={decreaseQty} />}>
-            </Route> */}
-            
-            </Routes>
-            <Footer />
-        </>
-    )
+  return (
+    <>
+      <Header CartItem={CartItem} />
+      <Routes>
+        <Route path='/' exact element={
+          <Pages
+            productItems={productItems}
+            addToCart={addToCart}
+            shopItems={shopItems} />}>
+        </Route>
+        <Route path='/cart' exact element={
+          <Cart
+            CartItem={CartItem}  
+            addToCart={addToCart}
+            decreaseQty={decreaseQty}
+          />}>
+        </Route>
+
+      </Routes>
+      <Footer />
+    </>
+  )
 }

@@ -1,13 +1,20 @@
 import React from "react"
 import logo from "../../components/assets/images/Logo.png"
-import { Link } from "react-router-dom"
-
+import { useNavigate } from "react-router-dom"
+import {FaShoppingCart} from 'react-icons/fa'
+import {IoPersonSharp} from "react-icons/io5";
 const Search = ({ CartItem }) => {
+
+  const history = useNavigate()
   // fixed Header
   window.addEventListener("scroll", function () {
     const search = document.querySelector(".search")
     search.classList.toggle("active", window.scrollY > 100)
   })
+
+  const goCart = () => {
+    history('/cart')
+  }
 
   return (
     <>
@@ -24,12 +31,12 @@ const Search = ({ CartItem }) => {
           </div>
 
           <div className='icon f_flex width'>
-            <div className="cart"><i className='fa fa-user icon-circle'></i></div>
+            <div className="cart"><IoPersonSharp className="search_icon"/></div>
             <div className='cart'>
-              <Link to='/cart'>
-                <i className='fa fa-shopping-bag icon-circle'></i>
+              <div onClick={goCart}>
+              <FaShoppingCart className="search_icon"/>
                 <span>{CartItem.length === 0 ? "" : CartItem.length}</span>
-              </Link>
+              </div>
             </div>
           </div>
         </div>

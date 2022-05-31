@@ -2,13 +2,23 @@ import React, { useState } from "react"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
+import { AiFillStar } from 'react-icons/ai';
+import { FiPlus } from 'react-icons/fi'
+import { BiPlus } from 'react-icons/bi'
+import { IoArrowBack, IoArrowForward } from "react-icons/io5";
+import {isMobile} from 'react-device-detect';
 
 const SampleNextArrow = (props) => {
+  if(isMobile){
+    console.log("-----mobile")
+  }else{
+    console.log("-----web")
+  }
   const { onClick } = props
   return (
     <div className='control-btn' onClick={onClick}>
       <button className='next'>
-        <i className='fa fa-long-arrow-alt-right'></i>
+      <IoArrowForward className="arrow_icon"/>
       </button>
     </div>
   )
@@ -18,7 +28,7 @@ const SamplePrevArrow = (props) => {
   return (
     <div className='control-btn' onClick={onClick}>
       <button className='prev'>
-        <i className='fa fa-long-arrow-alt-left'></i>
+        <IoArrowBack className="arrow_icon"/>
       </button>
     </div>
   )
@@ -32,7 +42,7 @@ const FlashCard = ({ productItems, addToCart }) => {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: isMobile ? 1 : 4,
     slidesToScroll: 1,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
@@ -47,28 +57,28 @@ const FlashCard = ({ productItems, addToCart }) => {
               <div className='product mtop'>
                 <div className='img'>
                   <span className='discount'>{productItems.discount}% Off</span>
-                  <img src={productItems.cover} alt='' />
+                  <img className='prod_img' src={productItems.p_image} alt='' />
                   <div className='product-like'>
                     <label>{count}</label> <br />
                     <i className='fa-regular fa-heart' onClick={increment}></i>
                   </div>
                 </div>
                 <div className='product-details'>
-                  <h3>{productItems.name}</h3>
+                  <h3>{productItems.p_name}</h3>
                   <div className='rate'>
-                    <i className='fa fa-star'></i>
-                    <i className='fa fa-star'></i>
-                    <i className='fa fa-star'></i>
-                    <i className='fa fa-star'></i>
-                    <i className='fa fa-star'></i>
+                    <AiFillStar className="star_icon"/>
+                    <AiFillStar className="star_icon"/>
+                    <AiFillStar className="star_icon"/>
+                    <AiFillStar className="star_icon"/>
+                    <AiFillStar className="star_icon"/>
                   </div>
                   <div className='price'>
-                    <h4>${productItems.price}.00 </h4>
+                    <h4>${productItems.p_price}.00 </h4>
                     {/* step : 3  
                      if hami le button ma click garryo bahne 
                     */}
                     <button onClick={() => addToCart(productItems)}>
-                      <i className='fa fa-plus'></i>
+                    <FiPlus />
                     </button>
                   </div>
                 </div>
