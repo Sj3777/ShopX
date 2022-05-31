@@ -16,7 +16,7 @@ export default function () {
   }, [])
 
   const getProduct = () => {
-    let url = `${API.localhost}/product/get-product`;
+    let url = `${API.production}/product/get-product`;
     axios.get(url).then((res) => {
       console.log("api res----", res.data.Data)
       setProduct(res.data.Data)

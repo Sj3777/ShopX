@@ -2,7 +2,7 @@ import React from "react"
 import logo from "../../components/assets/images/Logo.png"
 import { useNavigate } from "react-router-dom"
 import {FaShoppingCart} from 'react-icons/fa'
-import {IoPersonSharp} from "react-icons/io5";
+import {IoPersonSharp, IoSearch} from "react-icons/io5";
 const Search = ({ CartItem }) => {
 
   const history = useNavigate()
@@ -25,7 +25,7 @@ const Search = ({ CartItem }) => {
           </div>
 
           <div className='search-box f_flex'>
-            <i className='fa fa-search'></i>
+            <IoSearch className="search_icon2"/>
             <input type='text' placeholder='Search and hit enter...' />
             <span>All Category</span>
           </div>
