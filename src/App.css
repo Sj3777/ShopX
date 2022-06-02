@@ -315,3 +315,17 @@ button {
 @media screen and (max-width: 400px) {
   
 }
+
+.grand{
+  width: 100vw;
+  height: 100vh;
+}
+.parent{
+  width: 80vw;
+  height: auto;
+  margin: auto;
+}
+.child {
+  height: 100px;
+  background-color: #e94560;
+}

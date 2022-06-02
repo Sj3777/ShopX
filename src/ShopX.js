@@ -73,21 +73,13 @@ export default function () {
   return (
     <>
       <Header CartItem={CartItem} />
-      <Routes>
+      <Routes>  
         <Route path='/' exact element={
           <Pages
             productItems={productItems}
             addToCart={addToCart}
             shopItems={shopItems} />}>
         </Route>
-        <Route path='/cart' exact element={
-          <Cart
-            CartItem={CartItem}  
-            addToCart={addToCart}
-            decreaseQty={decreaseQty}
-          />}>
-        </Route>
-
       </Routes>
       <Footer />
     </>

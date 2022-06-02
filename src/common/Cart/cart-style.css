@@ -12,7 +12,7 @@
   width: 30%;
   margin-top: 30px;
   margin-left: 30px;
-  height: 130px;
+  height: 220px;
 }
 .cart-list {
   background: white;
@@ -68,13 +68,13 @@
   background: #f6f9fc;
 }
 .cart-total h4 {
-  font-size: 15px;
+  font-size: 1.1vw;
   font-weight: 400;
 }
 .cart-total h3 {
-  font-size: 20px;
+  font-size: 1.2vw;
   font-weight: 500;
-  color: #e94560;
+  color: #726d6e;
 }
 .cart-total h2 {
   font-size: 18px;
@@ -88,4 +88,27 @@
   font-size: 18px;
   margin-top: 30px;
   height: 130px;
+}
+.cart_total{
+  height: 500px;
+}
+.tot_price{
+  margin-top: 12px;
+  border-top: 1px solid rgb(203, 198, 198);
+  padding-top: 5PX;
+}
+.tot_price h4 {
+  font-size: 1.3vw;
+  font-weight: 500;
+}
+.tot_price h3{
+  font-size: 1.4vw;
+  font-weight: 500;
+  color: rgb(75, 236, 139);
+}
+.cartControl p{
+  font-weight: 400;
+  font-size: 1.6vw;
+  margin-top: 12px;
+  padding: 5px;
 }
