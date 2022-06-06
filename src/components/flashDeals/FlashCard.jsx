@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
@@ -7,8 +7,11 @@ import { FiPlus } from 'react-icons/fi'
 import { BiPlus } from 'react-icons/bi'
 import { IoArrowBack, IoArrowForward } from "react-icons/io5";
 import {isMobile} from 'react-device-detect';
+import "./flash-style.css"
+// import { ScrollMenu, VisibilityContext } from 'react-horizontal-scrolling-menu';
 
 const SampleNextArrow = (props) => {
+  
   if(isMobile){
     console.log("-----mobile")
   }else{
@@ -33,7 +36,10 @@ const SamplePrevArrow = (props) => {
     </div>
   )
 }
+
+
 const FlashCard = ({ productItems, addToCart }) => {
+  const [show, setShow] = useState(4);
   const [count, setCount] = useState(0)
   const increment = () => {
     setCount(count + 1)
@@ -42,19 +48,29 @@ const FlashCard = ({ productItems, addToCart }) => {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: isMobile ? 1 : 4,
+    slidesToShow: show,
     slidesToScroll: 1,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
   }
-
+  const toShow = () => {
+    if(isMobile){
+      setShow(1);
+    }else{
+      setShow(4);
+    }
+  }
+  useEffect(()=> {
+    toShow()
+  }, [])
+  
   return (
     <>
-      <Slider {...settings}>
+      <div className="cont_scroll">
         {productItems.map((productItems) => {
           return (
-            <div className='box'>
-              <div className='product mtop'>
+            <div className='box_flash'>
+              <div className='product_flash'>
                 <div className='img'>
                   <span className='discount'>{productItems.discount}% Off</span>
                   <img className='prod_img' src={productItems.p_image} alt='' />
@@ -86,7 +102,7 @@ const FlashCard = ({ productItems, addToCart }) => {
             </div>
           )
         })}
-      </Slider>
+      </div>
     </>
   )
 }

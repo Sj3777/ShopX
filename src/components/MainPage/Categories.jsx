@@ -53,7 +53,7 @@ const Categories = () => {
       <div className='category'>
         {data.map((value, index) => {
           return (
-            <div className='box f_flex' key={index}>
+            <div className='box_cat' key={index}>
               <img src={value.cateImg} alt='' />
               <span>{value.cateName}</span>
             </div>

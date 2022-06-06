@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <>
       <section className='home'>
-        <div className='container d_flex'>
+        <div className='container'>
           <Categories />
           <SliderHome />
         </div>
